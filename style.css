@@ -1,0 +1,1126 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+:root {
+    --background: #07080c;
+    --red: #16d585;
+    --red-light: #ff8195;
+    --white: #f7f0f1;
+    --muted: #c0b4bd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    background: var(--background);
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+}
+
+.experience {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 480px;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        radial-gradient(
+            ellipse at 50% 50%,
+            rgba(100, 13, 36, 0.16),
+            transparent 58%
+        ),
+        #07080c;
+}
+
+.background-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(91, 10, 32, 0.12),
+        transparent 70%
+    );
+}
+
+.ambient-light {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: min(90vw, 850px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(155, 19, 49, 0.12),
+        transparent 70%
+    );
+    animation: ambient-pulse 6s ease-in-out infinite alternate;
+}
+
+/* ESTRELAS */
+
+.stars {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: #ffe5eb;
+    opacity: 0;
+    box-shadow: 0 0 5px rgba(255, 167, 183, 0.5);
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+/* TELA PRINCIPAL */
+
+.garden {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moonlight {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 27%;
+    width: min(65vw, 650px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(245, 39, 77, 0.15),
+        rgba(130, 14, 43, 0.05) 42%,
+        transparent 70%
+    );
+    opacity: 0;
+    animation: moonlight-appear 2.5s 0.4s forwards;
+}
+
+/* ROSA E MENSAGEM LADO A LADO */
+
+.composition {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(30px, 6vw, 100px);
+    width: min(1100px, 94vw);
+    height: 100%;
+    padding: 35px 15px 55px;
+}
+
+.rose-area {
+    position: relative;
+    flex: 0 1 430px;
+    height: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rose-scene {
+    position: relative;
+    flex: 0 0 190px;
+    width: 190px;
+    height: 300px;
+    transform: scale(1.3);
+    transform-origin: center center;
+    opacity: 0;
+    animation: rose-arrive 1.8s 0.1s ease-out forwards;
+}
+
+/* CAULE */
+
+.stem {
+    position: absolute;
+    bottom: 0;
+    left: 93px;
+    width: 4px;
+    height: 0;
+    border-radius: 50%;
+    background: linear-gradient(
+        90deg,
+        #1b402b,
+        #6caa72,
+        #254a31
+    );
+    transform-origin: bottom center;
+    box-shadow: 0 0 8px rgba(65, 139, 78, 0.2);
+}
+
+.leaf {
+    position: absolute;
+    width: 39px;
+    height: 19px;
+    border-radius: 100% 0 100% 0;
+    background: linear-gradient(
+        140deg,
+        #91bd78,
+        #477d51 55%,
+        #23432c
+    );
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: bottom center;
+}
+
+.leaf::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: rgba(215, 242, 185, 0.35);
+    transform: rotate(-15deg);
+}
+
+.leaf-left {
+    top: 100px;
+    right: 1px;
+    transform-origin: bottom right;
+}
+
+.leaf-right {
+    top: 150px;
+    left: 1px;
+    transform-origin: bottom left;
+}
+
+.leaf-small {
+    top: 195px;
+    right: 0;
+    width: 28px;
+    height: 14px;
+    transform-origin: bottom right;
+}
+
+/* PÉTALAS DA ROSA */
+
+.flower {
+    position: absolute;
+    top: 3px;
+    left: 40px;
+    z-index: 3;
+    width: 110px;
+    height: 110px;
+    transform: scale(0) rotate(-25deg);
+    transform-origin: 50% 85%;
+    filter: drop-shadow(0 0 16px rgba(240, 35, 76, 0.25));
+}
+
+.petal {
+    position: absolute;
+    top: 12px;
+    left: 31px;
+    width: 48px;
+    height: 62px;
+    border-radius: 70% 30% 55% 45% / 65% 40% 60% 35%;
+    transform-origin: 50% 90%;
+    background: linear-gradient(
+        145deg,
+        #ff8c9b,
+        #f33c5e 40%,
+        #a20f35
+    );
+    box-shadow:
+        inset -5px -5px 10px rgba(65, 0, 15, 0.22),
+        inset 2px 2px 7px rgba(255, 195, 203, 0.2);
+}
+
+.petal-1 { transform: rotate(0deg) translateY(-15px); }
+.petal-2 { transform: rotate(40deg) translateY(-12px); }
+.petal-3 { transform: rotate(80deg) translateY(-12px); }
+.petal-4 { transform: rotate(120deg) translateY(-12px); }
+.petal-5 { transform: rotate(160deg) translateY(-12px); }
+.petal-6 { transform: rotate(200deg) translateY(-12px); }
+.petal-7 { transform: rotate(240deg) translateY(-12px); }
+.petal-8 { transform: rotate(280deg) translateY(-12px); }
+.petal-9 { transform: rotate(320deg) translateY(-12px); }
+
+.petal-10 {
+    top: 25px;
+    left: 37px;
+    width: 36px;
+    height: 48px;
+    background: linear-gradient(140deg, #ff6d84, #c51d43 75%);
+    transform: rotate(25deg) translateY(-9px);
+}
+
+.petal-11 {
+    top: 25px;
+    left: 37px;
+    width: 35px;
+    height: 46px;
+    background: linear-gradient(140deg, #ff9aa7, #dc2447 75%);
+    transform: rotate(145deg) translateY(-8px);
+}
+
+.petal-12 {
+    top: 25px;
+    left: 37px;
+    width: 35px;
+    height: 44px;
+    background: linear-gradient(140deg, #fa5977, #a71134 75%);
+    transform: rotate(260deg) translateY(-7px);
+}
+
+.petal-center {
+    top: 35px;
+    left: 43px;
+    width: 23px;
+    height: 31px;
+    background: linear-gradient(140deg, #ff9ba7, #b71a3b);
+    transform: rotate(-30deg);
+}
+
+.flower-core {
+    position: absolute;
+    top: 43px;
+    left: 48px;
+    width: 13px;
+    height: 17px;
+    border-radius: 70% 30% 60% 40%;
+    background: linear-gradient(135deg, #ffb2a9, #8b0929);
+    transform: rotate(25deg);
+}
+
+/* MENSAGEM À DIREITA */
+
+.message {
+    position: relative;
+    z-index: 4;
+    flex: 0 1 480px;
+    width: 100%;
+    padding: 30px 0;
+    opacity: 0;
+    transform: translateX(22px);
+    text-align: left;
+}
+
+.eyebrow {
+    display: block;
+    margin-bottom: 24px;
+    color: var(--red-light);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.message h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4.2vw, 54px);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.message h1 span {
+    display: block;
+    margin-top: 5px;
+    color: var(--red-light);
+    font-style: italic;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.divider > span:not(.divider-star) {
+    width: 42px;
+    height: 1px;
+    background: rgba(255, 129, 149, 0.45);
+}
+
+.divider-star {
+    color: var(--red-light);
+    font-size: 13px;
+}
+
+.message p {
+    max-width: 410px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+}
+
+/* PÉTALAS VOANDO PELA TELA */
+
+.falling-petals {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.flying-petal {
+    position: absolute;
+    top: -30px;
+    width: 10px;
+    height: 15px;
+    border-radius: 80% 10% 70% 30%;
+    background: linear-gradient(
+        140deg,
+        #02ff17,
+        #3b72f1 55%,
+        #393a3f
+    );
+    box-shadow: 0 0 10px rgba(255, 57, 92, 0.22);
+    opacity: 0;
+    animation: petal-fall linear forwards;
+}
+
+/* LUZ NO CHÃO */
+
+.ground-glow {
+    position: absolute;
+    bottom: -90px;
+    left: 27%;
+    width: 500px;
+    height: 250px;
+    transform: translateX(-50%);
+    background: radial-gradient(
+        ellipse,
+        rgba(130, 18, 47, 0.14),
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+/* RODAPÉ DISCRETO */
+
+.bottom-label {
+    position: absolute;
+    z-index: 7;
+    bottom: 17px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #8e8490;
+    font-size: 8px;
+    letter-spacing: 2px;
+    pointer-events: none;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: #775bf2;
+    box-shadow: 0 0 9px #f25b76;
+    animation: status-pulse 2s infinite;
+}
+
+/* FLORESCIMENTO AUTOMÁTICO */
+
+body.started .stem {
+    animation: stem-grow 2.3s 0.2s ease-out forwards;
+}
+
+body.started .leaf-left {
+    animation: leaf-grow 0.8s 1.6s ease-out forwards;
+}
+
+body.started .leaf-right {
+    animation: leaf-grow 0.8s 1.9s ease-out forwards;
+}
+
+body.started .leaf-small {
+    animation: leaf-grow 0.8s 2.2s ease-out forwards;
+}
+
+body.started .flower {
+    animation:
+        flower-bloom 2s 1.8s cubic-bezier(.2, .8, .2, 1) forwards,
+        flower-sway 4s 4s ease-in-out infinite;
+}
+
+body.show-message .message {
+    animation: message-appear 1.2s ease-out forwards;
+}
+
+/* ANIMAÇÕES */
+
+@keyframes rose-arrive {
+    from {
+        opacity: 0;
+        transform: scale(1.12) translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.3) translateY(0);
+    }
+}
+
+@keyframes stem-grow {
+    from { height: 0; }
+    to { height: 245px; }
+}
+
+@keyframes leaf-grow {
+    from {
+        opacity: 0;
+        scale: 0;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@keyframes flower-bloom {
+    0% {
+        transform: scale(0) rotate(-25deg);
+        filter: brightness(0.4);
+    }
+    70% {
+        transform: scale(1.12) rotate(5deg);
+        filter: brightness(1.25);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+}
+
+/* MOVIMENTO CONTÍNUO DA FLOR */
+
+@keyframes flower-sway {
+    0%, 100% {
+        transform: rotate(-4deg) scale(1);
+    }
+    50% {
+        transform: rotate(5deg) scale(1.025);
+    }
+}
+
+@keyframes moonlight-appear {
+    to { opacity: 1; }
+}
+
+@keyframes ambient-pulse {
+    from {
+        opacity: 0.65;
+        scale: 0.94;
+    }
+    to {
+        opacity: 1;
+        scale: 1.06;
+    }
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.12;
+        scale: 0.7;
+    }
+    to {
+        opacity: 0.8;
+        scale: 1.4;
+    }
+}
+
+@keyframes petal-fall {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -20px, 0) rotate(0deg);
+    }
+    12% { opacity: 0.9; }
+    75% { opacity: 0.8; }
+    100% {
+        opacity: 0;
+        transform:
+            translate3d(var(--drift), 110vh, 0)
+            rotate(var(--rotation));
+    }
+}
+
+@keyframes message-appear {
+    from {
+        opacity: 0;
+        transform: translateX(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes status-pulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+}
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+    body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .experience {
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
+    }
+
+    .garden {
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .composition {
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+        padding: 25px 18px 65px;
+    }
+
+    .rose-area {
+        flex: 0 0 300px;
+        width: 100%;
+        height: 300px;
+    }
+
+    .rose-scene {
+        transform: scale(1.02);
+    }
+
+    .message {
+        flex: none;
+        width: 100%;
+        max-width: 470px;
+        padding: 12px 4px 25px;
+        text-align: center;
+    }
+
+    .eyebrow {
+        margin-bottom: 17px;
+        font-size: 9px;
+    }
+
+    .message h1 {
+        font-size: clamp(29px, 7.5vw, 40px);
+    }
+
+    .divider {
+        justify-content: center;
+        margin: 18px 0;
+    }
+
+    .message p {
+        margin: 0 auto;
+        font-size: 12px;
+        line-height: 1.9;
+    }
+
+    .moonlight {
+        left: 50%;
+        width: 100vw;
+    }
+
+    .ground-glow {
+        left: 50%;
+    }
+
+    .bottom-label {
+        bottom: 14px;
+        font-size: 7px;
+    }
+}
+
+/* TELAS BAIXAS */
+
+@media (min-width: 701px) and (max-height: 650px) {
+    .composition {
+        gap: 25px;
+        transform: scale(0.85);
+        width: 115%;
+        margin-left: -7.5%;
+    }
+
+    .message h1 {
+        font-size: 38px;
+    }
+
+    .message p {
+        font-size: 12px;
+    }
+}
+
+/* ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+    .star,
+    .ambient-light,
+    .moonlight,
+    .status-dot {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* =====================================================
+   ENTRE IRMÃOS — PERSONAGENS E FUTEBOL
+   Complemento visual: não altera a rosa nem a mensagem
+===================================================== */
+
+.friends-scene {
+    position: absolute;
+    z-index: 5;
+    left: clamp(14px, 2.2vw, 34px);
+    top: 50%;
+    width: 290px;
+    height: 280px;
+    transform: translateY(-43%);
+    overflow: visible;
+    pointer-events: none;
+    isolation: isolate;
+}
+
+.friends-scene .friend-character {
+    position: absolute;
+    display: block;
+    left: 10px;
+    bottom: 43px;
+    width: 68px;
+    height: 164px;
+    opacity: 1;
+    visibility: visible;
+    transform-origin: 50% 100%;
+    animation: friend-idle-body 2.8s ease-in-out infinite;
+}
+
+.friends-scene .friend-two {
+    left: 123px;
+    animation: friend-play-body 2.1s ease-in-out infinite;
+}
+
+/* Cabeça e cabelo */
+.friends-scene .character-head {
+    position: absolute;
+    z-index: 5;
+    top: 1px;
+    left: 17px;
+    width: 35px;
+    height: 39px;
+    border-radius: 48% 48% 45% 45%;
+    background: linear-gradient(120deg, #ffd7ba, #e7ad8c 62%, #bd8069);
+    box-shadow: inset 2px 1px 4px rgba(255,255,255,.24), inset -3px -2px 5px rgba(93,43,35,.12);
+}
+
+.friends-scene .character-hair {
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    width: 38px;
+    height: 18px;
+    border-radius: 65% 60% 28% 25%;
+    background: linear-gradient(135deg, #4a3440, #17141d 78%);
+}
+
+.friends-scene .character-hair::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 7px;
+    width: 13px;
+    height: 9px;
+    border-radius: 70% 35% 60% 20%;
+    background: #40303b;
+    transform: rotate(-18deg);
+}
+
+.friends-scene .character-hair::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 1px;
+    width: 7px;
+    height: 12px;
+    border-radius: 0 0 5px 5px;
+    background: #29202a;
+}
+
+.friends-scene .friend-two .character-hair,
+.friends-scene .friend-two .character-hair::before,
+.friends-scene .friend-two .character-hair::after {
+    background: linear-gradient(135deg, #343b52, #141725 80%);
+}
+
+.friends-scene .character-eye {
+    position: absolute;
+    top: 20px;
+    right: 6px;
+    width: 4px;
+    height: 3px;
+    border-radius: 50%;
+    background: #49302b;
+}
+
+.friends-scene .character-neck {
+    position: absolute;
+    z-index: 2;
+    top: 34px;
+    left: 28px;
+    width: 12px;
+    height: 14px;
+    border-radius: 3px 3px 5px 5px;
+    background: linear-gradient(90deg, #bd8068, #efb89a 60%, #d49a7d);
+}
+
+/* Camisetas */
+.friends-scene .character-body {
+    position: absolute;
+    z-index: 3;
+    top: 41px;
+    left: 8px;
+    width: 49px;
+    height: 51px;
+    border-radius: 13px 13px 8px 8px;
+    background: linear-gradient(110deg, #ff8298, #f04465 48%, #a91f40);
+    box-shadow: inset 3px 1px 5px rgba(255,255,255,.2), inset -5px -3px 8px rgba(80,0,20,.2), 0 3px 8px rgba(0,0,0,.15);
+    transform-origin: 50% 12%;
+}
+
+.friends-scene .friend-two .character-body {
+    background: linear-gradient(110deg, #a2d4ff, #528be0 48%, #29467f);
+    box-shadow: inset 3px 1px 5px rgba(255,255,255,.22), inset -5px -3px 8px rgba(0,0,40,.2), 0 3px 8px rgba(0,0,0,.15);
+}
+
+.friends-scene .shirt-detail {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    width: 6px;
+    height: 25px;
+    border-radius: 4px;
+    background: rgba(255,255,255,.2);
+    transform: rotate(2deg);
+}
+
+/* Braços */
+.friends-scene .character-arm {
+    position: absolute;
+    z-index: 2;
+    top: 46px;
+    width: 11px;
+    height: 39px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #bd806a, #efb89a 55%, #d79b7f);
+    transform-origin: 50% 8%;
+}
+
+.friends-scene .arm-left {
+    left: 3px;
+    animation: friend-arm-left 2.8s ease-in-out infinite;
+}
+
+.friends-scene .arm-right {
+    right: 3px;
+    animation: friend-arm-right 2.8s ease-in-out infinite;
+}
+
+.friends-scene .friend-two .arm-left {
+    animation: player-arm-left 2.1s ease-in-out infinite;
+}
+
+.friends-scene .friend-two .arm-right {
+    animation: player-arm-right 2.1s ease-in-out infinite;
+}
+
+/* Pernas: o ponto de rotação fica no quadril para evitar pernas soltas */
+.friends-scene .character-leg {
+    position: absolute;
+    z-index: 2;
+    top: 86px;
+    left: 13px;
+    width: 15px;
+    height: 39px;
+    border-radius: 5px 5px 6px 6px;
+    background: linear-gradient(90deg, #242535, #45465a 55%, #292a39);
+    transform-origin: 50% 5%;
+    will-change: transform;
+}
+
+.friends-scene .leg-left {
+    margin-left: 0;
+    animation: friend-leg-left 1.8s ease-in-out infinite;
+}
+
+.friends-scene .leg-right {
+    margin-left: 20px;
+    animation: friend-leg-right 1.8s ease-in-out infinite;
+}
+
+.friends-scene .friend-two .leg-left {
+    margin-left: 0;
+    animation: player-support-leg 2.1s ease-in-out infinite;
+}
+
+.friends-scene .friend-two .kicking-leg {
+    margin-left: 20px;
+    animation: player-kick-leg 2.1s cubic-bezier(.45,0,.25,1) infinite;
+    z-index: 4;
+}
+
+/* Sapatos posicionados e animados para acompanhar cada perna */
+.friends-scene .character-shoe {
+    position: absolute;
+    z-index: 5;
+    top: 121px;
+    left: 2px;
+    width: 27px;
+    height: 11px;
+    border-radius: 7px 10px 4px 4px;
+    background: linear-gradient(180deg, #fff, #e4dce5 72%, #aaa2b0);
+    box-shadow: inset 0 -2px 0 rgba(40,30,50,.13), 0 3px 4px rgba(0,0,0,.25);
+    transform-origin: 15% 50%;
+}
+
+.friends-scene .shoe-left {
+    left: 2px;
+    animation: friend-shoe-left 1.8s ease-in-out infinite;
+}
+
+.friends-scene .shoe-right {
+    left: 29px;
+    animation: friend-shoe-right 1.8s ease-in-out infinite;
+}
+
+.friends-scene .friend-two .shoe-left {
+    left: 2px;
+    animation: player-support-shoe 2.1s ease-in-out infinite;
+}
+
+.friends-scene .friend-two .kicking-shoe {
+    left: 29px;
+    animation: player-kick-shoe 2.1s cubic-bezier(.45,0,.25,1) infinite;
+    z-index: 6;
+}
+
+/* Bola */
+.friends-scene .football {
+    position: absolute;
+    z-index: 3;
+    display: block;
+    left: 150px;
+    bottom: 25px;
+    width: 23px;
+    height: 23px;
+    border: 2px solid #f4eff5;
+    border-radius: 50%;
+    background: #f8f7fa;
+    box-shadow: 0 0 10px rgba(255,255,255,.16), 0 4px 6px rgba(0,0,0,.3);
+    animation: friend-ball-kick 2.1s ease-in-out infinite;
+}
+
+.friends-scene .football-patch {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 9px;
+    height: 9px;
+    background: #252536;
+    clip-path: polygon(50% 0, 100% 35%, 80% 100%, 20% 100%, 0 35%);
+}
+
+.friends-scene .football-seam {
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(40,35,55,.5);
+    border-radius: 50%;
+}
+
+/* Chão discreto e legenda */
+.friends-scene::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 24px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,129,149,.32), rgba(104,148,255,.32), transparent);
+}
+
+.friends-scene .friends-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #c5b5c1;
+    text-align: center;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    white-space: nowrap;
+}
+
+.friends-scene .friends-caption span {
+    color: #ff8195;
+}
+
+/* Animação suave do primeiro amigo */
+@keyframes friend-idle-body {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-1px) rotate(-.8deg); }
+    50% { transform: translateY(-2px) rotate(0); }
+    75% { transform: translateY(-1px) rotate(.8deg); }
+}
+
+@keyframes friend-arm-left {
+    0%, 100% { transform: rotate(13deg); }
+    50% { transform: rotate(20deg); }
+}
+
+@keyframes friend-arm-right {
+    0%, 100% { transform: rotate(-13deg); }
+    50% { transform: rotate(-20deg); }
+}
+
+@keyframes friend-leg-left {
+    0%, 100% { transform: rotate(5deg); }
+    50% { transform: rotate(-7deg); }
+}
+
+@keyframes friend-leg-right {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(7deg); }
+}
+
+@keyframes friend-shoe-left {
+    0%, 100% { transform: rotate(5deg) translateY(0); }
+    50% { transform: rotate(-5deg) translateY(-1px); }
+}
+
+@keyframes friend-shoe-right {
+    0%, 100% { transform: rotate(-5deg) translateY(0); }
+    50% { transform: rotate(5deg) translateY(-1px); }
+}
+
+/* Sequência do chute: preparação, balanço, contato e retorno */
+@keyframes friend-play-body {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    24% { transform: translateY(0) rotate(1deg); }
+    36% { transform: translateY(2px) rotate(-4deg); }
+    47% { transform: translateY(-3px) rotate(-6deg); }
+    61% { transform: translateY(-1px) rotate(2deg); }
+    78% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes player-arm-left {
+    0%, 24%, 100% { transform: rotate(12deg); }
+    38%, 54% { transform: rotate(37deg); }
+    68% { transform: rotate(18deg); }
+}
+
+@keyframes player-arm-right {
+    0%, 24%, 100% { transform: rotate(-12deg); }
+    38%, 54% { transform: rotate(-40deg); }
+    68% { transform: rotate(-18deg); }
+}
+
+@keyframes player-support-leg {
+    0%, 24%, 100% { transform: rotate(0); }
+    36%, 57% { transform: rotate(8deg); }
+    72% { transform: rotate(0); }
+}
+
+@keyframes player-support-shoe {
+    0%, 24%, 100% { transform: rotate(0) translateY(0); }
+    36%, 57% { transform: rotate(6deg) translateY(-1px); }
+    72% { transform: rotate(0) translateY(0); }
+}
+
+@keyframes player-kick-leg {
+    0%, 24%, 100% { transform: rotate(-5deg); }
+    34% { transform: rotate(-23deg); }
+    44% { transform: rotate(-62deg); }
+    51% { transform: rotate(-44deg); }
+    64% { transform: rotate(7deg); }
+    80% { transform: rotate(-5deg); }
+}
+
+@keyframes player-kick-shoe {
+    0%, 24%, 100% { transform: rotate(-5deg) translate(0,0); }
+    34% { transform: rotate(-13deg) translate(1px,-1px); }
+    44% { transform: rotate(-29deg) translate(4px,-3px); }
+    51% { transform: rotate(-18deg) translate(2px,-2px); }
+    64% { transform: rotate(7deg) translate(0,0); }
+    80% { transform: rotate(-5deg); }
+}
+
+@keyframes friend-ball-kick {
+    0%, 36% { transform: translate(0,0) rotate(0); }
+    44% { transform: translate(7px,-2px) rotate(60deg); }
+    58% { transform: translate(43px,-18px) rotate(230deg); }
+    72% { transform: translate(78px,-2px) rotate(410deg); }
+    86% { transform: translate(96px,0) rotate(570deg); }
+    100% { transform: translate(0,0) rotate(720deg); }
+}
+
+/* Telas pequenas: mantém os personagens juntos e reduz o tamanho */
+@media (max-width: 700px) {
+    .friends-scene {
+        left: 50%;
+        top: 8px;
+        transform: translateX(-50%) scale(.52);
+        transform-origin: top center;
+        z-index: 5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .friends-scene .friend-character,
+    .friends-scene .character-arm,
+    .friends-scene .character-leg,
+    .friends-scene .character-shoe,
+    .friends-scene .football {
+        animation-duration: 6s;
+    }
+}
